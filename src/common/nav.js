@@ -16,6 +16,12 @@ export const getNavData = app => [
     path: '/',
     children: [
       {
+        name: '辩题列表',
+        icon: 'table',
+        path: 'motion',
+        component: dynamicWrapper(app, ['rule'], import('../routes/Motion/MotionList')),
+      },
+      {
         name: 'Dashboard',
         icon: 'dashboard',
         path: 'dashboard',
@@ -25,11 +31,11 @@ export const getNavData = app => [
             path: 'analysis',
             component: dynamicWrapper(app, ['chart'], import('../routes/Dashboard/Analysis')),
           },
-          {
-            name: '监控页',
-            path: 'monitor',
-            component: dynamicWrapper(app, ['monitor'], import('../routes/Dashboard/Monitor')),
-          },
+          // {
+          //   name: '监控页',
+          //   path: 'monitor',
+          //   component: dynamicWrapper(app, ['monitor'], import('../routes/Dashboard/Monitor')),
+          // },
           {
             name: '工作台',
             path: 'workplace',
@@ -192,15 +198,5 @@ export const getNavData = app => [
         ],
       },
     ],
-  },
-  {
-    component: dynamicWrapper(app, [], import('../layouts/BlankLayout')),
-    layout: 'BlankLayout',
-    children: {
-      name: '使用文档',
-      path: 'http://pro.ant.design/docs/getting-started',
-      target: '_blank',
-      icon: 'book',
-    },
   },
 ];

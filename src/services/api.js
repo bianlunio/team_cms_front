@@ -84,3 +84,27 @@ export async function fakeRegister(params) {
 export async function queryNotices() {
   return request('/api/notices');
 }
+
+export async function queryMotion(params) {
+  return request(`/api/rule?${stringify(params)}`);
+}
+
+export async function removeMotion(params) {
+  return request('/api/rule', {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'delete',
+    },
+  });
+}
+
+export async function addMotion(params) {
+  return request('/api/rule', {
+    method: 'POST',
+    body: {
+      ...params,
+      method: 'post',
+    },
+  });
+}
