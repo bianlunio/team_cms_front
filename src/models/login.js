@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { fakeAccountLogin, fakeMobileLogin } from '../services/api';
+import { accountLogin } from '../services/api';
 
 export default {
   namespace: 'login',
@@ -14,7 +14,7 @@ export default {
         type: 'changeSubmitting',
         payload: true,
       });
-      const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(accountLogin, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
@@ -24,22 +24,23 @@ export default {
         payload: false,
       });
     },
-    *mobileSubmit(_, { call, put }) {
-      yield put({
-        type: 'changeSubmitting',
-        payload: true,
-      });
-      const response = yield call(fakeMobileLogin);
-      yield put({
-        type: 'changeLoginStatus',
-        payload: response,
-      });
-      yield put({
-        type: 'changeSubmitting',
-        payload: false,
-      });
-    },
+    // *mobileSubmit(_, { call, put }) {
+    //   yield put({
+    //     type: 'changeSubmitting',
+    //     payload: true,
+    //   });
+    //   const response = yield call(fakeMobileLogin);
+    //   yield put({
+    //     type: 'changeLoginStatus',
+    //     payload: response,
+    //   });
+    //   yield put({
+    //     type: 'changeSubmitting',
+    //     payload: false,
+    //   });
+    // },
     *logout(_, { put }) {
+      console.log('logout')
       yield put({
         type: 'changeLoginStatus',
         payload: {
@@ -52,11 +53,26 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      return {
-        ...state,
-        status: payload.status,
-        type: payload.type,
-      };
+      if (payload.status === false) {
+        window.localStorage.removeItem('token');
+        return {
+          ...state,
+          status: payload.status,
+        };
+      } else if (payload.success) {
+        window.localStorage.setItem('token', payload.token);
+        return {
+          ...state,
+          status: 'ok',
+          type: 'account',
+        };
+      } else {
+        return {
+          ...state,
+          status: 'error',
+          type: 'account',
+        };
+      }
     },
     changeSubmitting(state, { payload }) {
       return {

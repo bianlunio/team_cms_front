@@ -1,3 +1,4 @@
+import { routerRedux } from 'dva/router';
 import { query as queryUsers, queryCurrent } from '../services/user';
 
 export default {
@@ -27,10 +28,14 @@ export default {
     },
     *fetchCurrent(_, { call, put }) {
       const response = yield call(queryCurrent);
-      yield put({
-        type: 'saveCurrentUser',
-        payload: response,
-      });
+      if (response.success) {
+        yield put({
+          type: 'saveCurrentUser',
+          payload: response,
+        });
+      } else {
+        yield put(routerRedux.push('/user/login'));
+      }
     },
   },
 

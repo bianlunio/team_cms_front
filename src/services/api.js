@@ -1,6 +1,15 @@
 import { stringify } from 'qs';
 import request from '../utils/request';
 
+export async function accountLogin(params) {
+  return request('/api/token/', {
+    method: 'POST',
+    body: params,
+  });
+}
+
+// below are mock requests
+
 export async function queryProjectNotice() {
   return request('/api/project/notice');
 }

@@ -334,11 +334,11 @@ class BasicLayout extends React.PureComponent {
                   {/*emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"*/}
                 {/*/>*/}
               {/*</NoticeIcon>*/}
-              {currentUser.name ? (
+              {currentUser.nickname ? (
                 <Dropdown overlay={menu}>
                   <span className={`${styles.action} ${styles.account}`}>
-                    <Avatar size="small" className={styles.avatar} src={currentUser.avatar} />
-                    {currentUser.name}
+                    {/*<Avatar size="small" className={styles.avatar} src={currentUser.avatar} />*/}
+                    {currentUser.nickname}
                   </span>
                 </Dropdown>
               ) : <Spin size="small" style={{ marginLeft: 8 }} />}
