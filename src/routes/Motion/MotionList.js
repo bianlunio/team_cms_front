@@ -11,7 +11,7 @@ const { Option } = Select;
 const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
 
 @connect(state => ({
-  rule: state.rule,
+  motion: state.motion,
 }))
 @Form.create()
 export default class MotionList extends PureComponent {
@@ -26,7 +26,7 @@ export default class MotionList extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'rule/fetch',
+      type: 'motion/fetch',
     });
   }
 
@@ -51,7 +51,7 @@ export default class MotionList extends PureComponent {
     }
 
     dispatch({
-      type: 'rule/fetch',
+      type: 'motion/fetch',
       payload: params,
     });
   }
@@ -74,7 +74,7 @@ export default class MotionList extends PureComponent {
       });
 
       dispatch({
-        type: 'rule/fetch',
+        type: 'motion/fetch',
         payload: values,
       });
     });
@@ -106,7 +106,7 @@ export default class MotionList extends PureComponent {
 
   handleAdd = () => {
     this.props.dispatch({
-      type: 'rule/add',
+      type: 'motion/add',
       payload: {
         name: this.state.motionName,
         zheng: this.state.motionZheng,
@@ -153,7 +153,7 @@ export default class MotionList extends PureComponent {
   }
 
   render() {
-    const { rule: { loading: ruleLoading, data } } = this.props;
+    const { motion: { loading: motionLoading, data } } = this.props;
     const { modalVisible, motionName, motionZheng, motionFan } = this.state;
 
     return (
@@ -169,7 +169,7 @@ export default class MotionList extends PureComponent {
               </Button>
             </div>
             <StandardTable
-              loading={ruleLoading}
+              loading={motionLoading}
               data={data}
               onChange={this.handleStandardTableChange}
             />

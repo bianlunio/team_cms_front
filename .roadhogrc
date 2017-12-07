@@ -28,6 +28,10 @@
     "/api/members/current_user/": {
       "target": "http://localhost:8000",
       "changeOrigin": true
+    },
+    "/api/motions/": {
+      "target": "http://localhost:8000",
+      "changeOrigin": true
     }
   }
 }

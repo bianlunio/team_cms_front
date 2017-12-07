@@ -40,7 +40,6 @@ export default {
     //   });
     // },
     *logout(_, { put }) {
-      console.log('logout')
       yield put({
         type: 'changeLoginStatus',
         payload: {

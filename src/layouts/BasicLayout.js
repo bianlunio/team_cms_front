@@ -240,13 +240,13 @@ class BasicLayout extends React.PureComponent {
   //   }
   // }
   render() {
-    const { currentUser, collapsed, fetchingNotices, getRouteData } = this.props;
+    const { currentUser, collapsed, getRouteData } = this.props;
 
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
-        <Menu.Item disabled><Icon type="user" />个人中心</Menu.Item>
-        <Menu.Item disabled><Icon type="setting" />设置</Menu.Item>
-        <Menu.Divider />
+        {/*<Menu.Item disabled><Icon type="user" />个人中心</Menu.Item>*/}
+        {/*<Menu.Item disabled><Icon type="setting" />设置</Menu.Item>*/}
+        {/*<Menu.Divider />*/}
         <Menu.Item key="logout"><Icon type="logout" />退出登录</Menu.Item>
       </Menu>
     );
@@ -358,7 +358,7 @@ class BasicLayout extends React.PureComponent {
                   )
                 )
               }
-              <Redirect exact from="/" to="/dashboard/analysis" />
+              <Redirect exact from="/" to="/motion" />
               <Route component={NotFound} />
             </Switch>
             <GlobalFooter
